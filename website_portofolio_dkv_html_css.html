@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dheva Studio | Portfolio DKV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0b0b0b;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .menu a {
+      color: #ccc;
+      transition: 0.3s;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .menu a:hover {
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero-content small {
+      letter-spacing: 5px;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .hero-content h1 {
+      font-size: 5rem;
+      margin: 20px 0;
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      max-width: 700px;
+      margin: auto;
+      color: #ccc;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      border-radius: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Section */
+    section {
+      padding: 120px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title small {
+      color: #777;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
+      margin-top: 15px;
+    }
+
+    /* About */
+    .about {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about img {
+      border-radius: 25px;
+      height: 550px;
+      object-fit: cover;
+    }
+
+    .about-text p {
+      color: #bbb;
+      line-height: 1.9;
+      margin: 20px 0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .stat-box {
+      background: #141414;
+      padding: 25px;
+      border-radius: 20px;
+      flex: 1;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-box h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-box p {
+      color: #999;
+      margin: 0;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 25px;
+      background: #111;
+    }
+
+    .portfolio-card img {
+      height: 450px;
+      object-fit: cover;
+      transition: 0.5s;
+      opacity: 0.8;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .portfolio-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 30px;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    }
+
+    .portfolio-info small {
+      color: #aaa;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .portfolio-info h3 {
+      margin-top: 10px;
+      font-size: 2rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service-card {
+      background: #141414;
+      padding: 40px;
+      border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-number {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #333;
+    }
+
+    .service-card h3 {
+      margin: 20px 0;
+    }
+
+    .service-card p {
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      background: linear-gradient(to bottom, #111, #000);
+    }
+
+    .contact p {
+      max-width: 700px;
+      margin: 20px auto 40px;
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #777;
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+
+      .about,
+      .portfolio-grid,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .stats {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Dheva Studio</div>
+
+        <div class="menu">
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <small>Desain Komunikasi Visual</small>
+
+      <h1>
+        Creative Designer <br>
+        & Visual Storyteller
+      </h1>
+
+      <p>
+        Saya membuat desain visual modern untuk branding, ilustrasi,
+        UI/UX, dan media sosial dengan tampilan profesional dan aesthetic.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn btn-primary">Lihat Karya</a>
+        <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container about">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop" alt="Profile">
+
+      <div class="about-text">
+        <div class="section-title" style="text-align:left; margin-bottom:20px;">
+          <small>Tentang Saya</small>
+          <h2>Membangun Visual yang Punya Cerita</h2>
+        </div>
+
+        <p>
+          Saya adalah desainer DKV yang fokus pada branding,
+          social media design, ilustrasi, dan desain website modern.
+          Saya percaya desain harus menarik sekaligus mampu
+          menyampaikan pesan secara efektif.
+        </p>
+
+        <div class="stats">
+          <div class="stat-box">
+            <h3>3+</h3>
+            <p>Tahun Pengalaman</p>
+          </div>
+
+          <div class="stat-box">
+            <h3>50+</h3>
+            <p>Project Selesai</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <small>Portofolio</small>
+        <h2>Selected Works</h2>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="portfolio-info">
+            <small>Branding</small>
+            <h3>Brand Identity Coffee Shop</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="portfolio-info">
+            <small>Poster Design</small>
+            <h3>Poster Festival Musik</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="portfolio-info">
+            <small>UI/UX</small>
+            <h3>UI Design Mobile App</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="portfolio-info">
+            <small>Packaging</small>
+            <h3>Packaging Produk Lokal</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <small>Layanan</small>
+        <h2>What I Do</h2>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-number">01</div>
+          <h3>Brand Identity</h3>
+          <p>
+            Membantu menciptakan identitas visual yang kuat,
+            modern, dan profesional.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">02</div>
+          <h3>UI/UX Design</h3>
+          <p>
+            Mendesain tampilan aplikasi dan website yang modern
+            dan nyaman digunakan.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-number">03</div>
+          <h3>Social Media Design</h3>
+          <p>
+            Membuat konten visual media sosial yang menarik
+            dan sesuai branding.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <small>Contact</small>
+        <h2>Let’s Build Something Amazing</h2>
+      </div>
+
+      <p>
+        Tertarik bekerja sama atau ingin melihat lebih banyak karya?
+        Hubungi saya melalui email atau media sosial.
+      </p>
+
+      <div class="contact-buttons">
+        <a href="mailto:hello@dhevastudio.com" class="btn btn-primary">
+          Email Saya
+        </a>
+
+        <a href="https://instagram.com" class="btn btn-secondary">
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Dheva Studio — All Rights Reserved.
+  </footer>
+
+</body>
+</html>
